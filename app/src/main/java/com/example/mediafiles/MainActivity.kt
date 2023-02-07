@@ -12,9 +12,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         mediaPlayer = MediaPlayer.create(this,R.raw.applauding)
 
-        val button = findViewById<Button>(R.id.button)
-        button.setOnClickListener {
+        val play = findViewById<Button>(R.id.btnPlay)
+        val pause = findViewById<Button>(R.id.btnPause)
+        val stop = findViewById<Button>(R.id.btnStop)
+        play.setOnClickListener {
             mediaPlayer.start()
+        }
+        pause.setOnClickListener {
+            mediaPlayer.pause()
+        }
+        stop.setOnClickListener {
+
+            mediaPlayer.reset()
         }
     }
 }
