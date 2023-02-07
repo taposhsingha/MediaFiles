@@ -6,24 +6,29 @@ import android.os.Bundle
 import android.widget.Button
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var mediaPlayer: MediaPlayer
+    private var mediaPlayer: MediaPlayer? =null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        mediaPlayer = MediaPlayer.create(this,R.raw.applauding)
+
 
         val play = findViewById<Button>(R.id.btnPlay)
         val pause = findViewById<Button>(R.id.btnPause)
         val stop = findViewById<Button>(R.id.btnStop)
         play.setOnClickListener {
-            mediaPlayer.start()
+            if(mediaPlayer==null){
+                mediaPlayer = MediaPlayer.create(this,R.raw.applauding)
+            }
+            mediaPlayer?.start()
         }
         pause.setOnClickListener {
-            mediaPlayer.pause()
+            mediaPlayer?.pause()
         }
         stop.setOnClickListener {
-
-            mediaPlayer.reset()
+            mediaPlayer?.stop()
+            mediaPlayer?.reset()
+            mediaPlayer?.release()
+            mediaPlayer = null
         }
     }
 }
